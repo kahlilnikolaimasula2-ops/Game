@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Snake.css">
+    
+    <title>Snake</title>   
+</head>
+
+<div class="card">
+    <canvas
+    id="canvas"
+    width="300"
+    height="300"
+    ></canvas>
+    <div class="info">
+        <h1>Snake Game</h1>
+        <p>Eat the Foods and DON'T bite yourself</p>
+        <div class="score-box">SCORE
+            <b id="score">0</b>
+        </div>
+        <small>use the arrow keys to move</small>
+    </div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, 64px); grid-template-areas: '. up .' 'left down right'; gap: 8px; justify-content: center;">
+    <button type="button" aria-label="Up" onclick="moveSnake('ArrowUp')" style="grid-area: up; width: 64px; height: 64px; font-size: 2rem; font-weight: bold;">↑</button>
+    <button type="button" aria-label="Left" onclick="moveSnake('ArrowLeft')" style="grid-area: left; width: 64px; height: 64px; font-size: 2rem; font-weight: bold;">←</button>
+    <button type="button" aria-label="Right" onclick="moveSnake('ArrowRight')" style="grid-area: right; width: 64px; height: 64px; font-size: 2rem; font-weight: bold;">→</button>
+    <button type="button" aria-label="Down" onclick="moveSnake('ArrowDown')" style="grid-area: down; width: 64px; height: 64px; font-size: 2rem; font-weight: bold;">↓</button>
+</div>
+<style>
+    body {
+        background:violet,pink,white;
+        color: #111;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    body.dark {
+        background: #222;
+        color: #fff;
+    }
+
+    #mode-toggle {
+        display: block;
+        margin: 16px auto;
+        padding: 10px 16px;
+        border: 1px solid #888;
+        border-radius: 6px;
+        background: #eee;
+        color: #111;
+        font-size: 1rem;
+        cursor: pointer;
+    }
+
+    body.dark #mode-toggle {
+        background: #444;
+        color: #fff;
+    }
+</style>
+<button id="mode-toggle" type="button" aria-pressed="false" onclick="toggleMode()">Enable dark mode</button>
+<script>
+    function toggleMode() {
+        const isDark = document.body.classList.toggle("dark");
+        const button = document.getElementById("mode-toggle");
+        button.textContent = isDark ? "Disable dark mode" : "Enable dark mode";
+        button.setAttribute("aria-pressed", String(isDark));
+    }
+</script>
+<script src="snake.js"></script>
+</html>
